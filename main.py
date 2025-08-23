@@ -8,8 +8,8 @@ while True:
             todo = input("Enter a todo: ")
             todos.append(todo)
         case "show" | 'display':
-            for item in todos:
-                print(item)
+            for index, item in enumerate(todos):
+                print(index, '-', item)
         case "edit":
             number = int(input("Enter the todo no. to edit: "))
             number = number - 1   # because list indexing starts from 0, so when user writes 2, its actually 1.
