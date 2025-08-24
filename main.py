@@ -1,4 +1,5 @@
 while True:
+    # Get user input & strip space chars from it.
     user_action = input("Type add, show, edit, complete or exit: ")
     user_action = user_action.strip()
 
@@ -6,26 +7,22 @@ while True:
         case 'add':
             todo = input("Enter a todo: ") + "\n"
 
-            file = open('todos.txt', 'r')   # r = read
-            todos = file.readlines()
-            file.close()    #NOTE: always close the file.
+            # OPTIMISING THE CODE by using CONTEXT MANAGER - with
+            with open('todos.txt', 'r') as file:
+                todos = file.readlines()
+            # Also, with context manager, you don't need to close the file.
 
             todos.append(todo)
 
-            file = open('todos.txt', 'w')   # w = write
-            file.writelines(todos)
-            file.close()
+            with open('todos.txt', 'w') as file:
+                file.writelines(todos)
+
         case "show" | 'display':
-            file = open('todos.txt', 'r')
-            todos = file.readlines()
-            file.close()
+            with open('todos.txt', 'r') as file:
+                todos = file.readlines()
 
-            new_todos = []
-            for item in todos:
-                new_item = item.strip('\n')
-                new_todos.append(new_item)
-
-            for index, item in enumerate(new_todos):
+            for index, item in enumerate(todos):
+                item = item.strip('\n')
                 row = f"{index + 1}-{item}"
                 print(row)
         case "edit":
