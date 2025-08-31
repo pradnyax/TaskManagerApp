@@ -13,3 +13,12 @@ def write_todos(todos_arg, filepath=FILEPATH):
     """Write a list of to-do items in a text file."""
     with open(filepath, 'w') as file:
         file.writelines(todos_arg)
+
+
+if __name__ == "__main__":
+    print("Hello")
+    print(get_todos())
+
+# these two lines are only executed when this function.py file is executed directly.
+# And these lines are not executed when you execute the other script which imports the functions.py file.
+# so this is to control the execution of this script.
