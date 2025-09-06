@@ -25,6 +25,9 @@ window = sg.Window("My To-Do App",
 
 while True:
     event, values = window.read(timeout=200)
+
+    if event == sg.WIN_CLOSED or event == "Exit":
+        break  # stop loop before updating clock.
     window["clock"].update(value=time.strftime("%d %B, %Y %I:%M:%S"))
 
     match event:
