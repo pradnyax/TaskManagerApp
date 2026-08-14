@@ -1,7 +1,14 @@
+import os
+
 FILEPATH = "todos.txt"
+
 
 def get_todos(filepath=FILEPATH):
     """Read a text file and return the list of to-do items."""
+    if not os.path.exists(filepath):
+        with open(filepath, 'w') as file:
+            pass  # Creates an empty file
+
     with open(filepath, 'r') as file_local:
         todos_local = file_local.readlines()
     return todos_local
@@ -21,4 +28,4 @@ if __name__ == "__main__":
 
 # these two lines are only executed when this function.py file is executed directly.
 # And these lines are not executed when you execute the other script which imports the functions.py file.
-# so this is to control the execution of this script.
+# so this is to control the execution  of this script.
