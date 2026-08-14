@@ -3,11 +3,26 @@ import functions
 import FreeSimpleGUI as sg
 
 label = sg.Text("Type in a to-do:")
-input_box = sg.InputText(tooltip="Enter todo")
+input_box = sg.InputText(tooltip="Enter todo", key="todo")
 add_Button = sg.Button("Add")
 
-window = sg.Window("P's To-Do App", layout=[[label], [input_box, add_Button]])
-window.read()
+window = sg.Window("P's To-Do App",
+                   layout=[[label], [input_box, add_Button]],
+                   font=('Helvetica', 20))
+while True:
+    event, values = window.read()
+    print(event)
+    print(values)
+
+    match event:
+        case "Add":
+            todos = functions.get_todos()
+            new_todo = values['todo'] + "\n"
+            todos.append(new_todo)
+            functions.write_todos(todos)
+        case sg.WIN_CLOSED:
+            break
+
 window.close()
 
 # NOTE: freesimplegui mental pattern
