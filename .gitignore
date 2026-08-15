@@ -15,3 +15,8 @@ env/
 # OS-specific
 .DS_Store
 Thumbs.db
+
+# PyInstaller outputs
+build/
+dist/
+*.spec
