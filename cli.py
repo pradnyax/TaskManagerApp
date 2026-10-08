@@ -1,6 +1,7 @@
 # from functions import get_todos, write_todos
-import functions
 import time
+
+import functions
 
 now = time.strftime("%d %B,%Y %I:%M:%S")
 print("It is", now)
@@ -12,22 +13,21 @@ while True:
 
     # if 'add' in user_action or 'new' in user_action:
     if user_action.startswith("add"):
-        todo = user_action[4:]      #list slicing operation
+        todo = user_action[4:]  # list slicing operation
 
         todos = functions.get_todos()
 
-        todos.append(todo + '\n')
+        todos.append(todo + "\n")
 
         # write_todos(todos, "todos.txt") --> don't need the filepath here coz it's a default parameter!
         functions.write_todos(todos)
 
     # elif "show" in user_action:
     elif user_action.startswith("show"):
-
         todos = functions.get_todos()
 
         for index, item in enumerate(todos):
-            item = item.strip('\n')
+            item = item.strip("\n")
             row = f"{index + 1}-{item}"
             print(row)
 
@@ -36,17 +36,19 @@ while True:
         try:
             number = int(user_action[5:])
             print(number)
-            number = number - 1   #because list indexing starts from 0, so when user writes 2, its actually 1. (has done this -1 or +1 on other lines of code too!)
+            number = (
+                number - 1
+            )  # because list indexing starts from 0, so when user writes 2, its actually 1. (has done this -1 or +1 on other lines of code too!)
 
             todos = functions.get_todos()
 
             new_todo = input("Enter new todo: ")
-            todos[number] = new_todo + '\n'
+            todos[number] = new_todo + "\n"
 
             functions.write_todos(todos)
         except ValueError:
             print("Invalid command.")
-            continue        #continue jumps back to the beginning.
+            continue  # continue jumps back to the beginning.
 
     # elif 'complete' in user_action:
     elif user_action.startswith("complete"):
@@ -56,7 +58,7 @@ while True:
             todos = functions.get_todos()
 
             index = number - 1
-            todo_to_remove = todos[index].strip('\n')
+            todo_to_remove = todos[index].strip("\n")
             todos.pop(index)
 
             functions.write_todos(todos)
